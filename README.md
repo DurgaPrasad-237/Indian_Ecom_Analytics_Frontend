@@ -1134,9 +1134,7 @@ Analytics / AI / Data Pipeline
 
 Backend repository:
 
-```text
-<your-backend-repository-url>
-```
+[Backend Repository](https://github.com/DurgaPrasad-237/Ecom_Analytics_backend)
 
 ---
 
