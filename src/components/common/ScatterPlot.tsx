@@ -8,6 +8,8 @@ import {
   Tooltip,
 } from 'recharts';
 
+import { CHART_COLORS } from '@/constants/chartTheme';
+
 interface ScatterPoint {
   x: number;
   y: number;
@@ -40,7 +42,7 @@ export function ScatterPlot({
         }}
       >
         <CartesianGrid
-          stroke="#EEF1F5"
+          stroke={CHART_COLORS.grid}
           vertical
         />
 
@@ -48,8 +50,13 @@ export function ScatterPlot({
           type="number"
           dataKey="x"
           name={xLabel}
-          tick={{ fontSize: 11 }}
-          axisLine={{ stroke: '#EEF1F5' }}
+          tick={{
+            fontSize: 11,
+            fill: CHART_COLORS.axis,
+          }}
+          axisLine={{
+            stroke: CHART_COLORS.grid,
+          }}
           tickLine={false}
           tickFormatter={(value) =>
             `${xPrefix}${value.toLocaleString('en-IN')}`
@@ -60,7 +67,10 @@ export function ScatterPlot({
           type="number"
           dataKey="y"
           name={yLabel}
-          tick={{ fontSize: 11 }}
+          tick={{
+            fontSize: 11,
+            fill: CHART_COLORS.axis,
+          }}
           axisLine={false}
           tickLine={false}
           tickFormatter={(value) =>
@@ -74,7 +84,7 @@ export function ScatterPlot({
           }}
           contentStyle={{
             borderRadius: 8,
-            borderColor: '#EEF1F5',
+            borderColor: CHART_COLORS.grid,
             fontSize: 12,
           }}
           formatter={(value: number, name: string) => [
@@ -88,7 +98,9 @@ export function ScatterPlot({
         <Scatter
           name={yLabel}
           data={data}
-          fill="#2864AD"
+          fill={CHART_COLORS.primary}
+          fillOpacity={0.45}
+          r={3}
         />
       </ScatterChart>
     </ResponsiveContainer>

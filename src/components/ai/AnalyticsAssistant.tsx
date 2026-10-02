@@ -8,7 +8,7 @@ let messageIdCounter = 0;
 const nextId = () => `msg-${Date.now()}-${messageIdCounter++}`;
 
 interface AnalyticsAssistantProps {
-  type: 'customer' | 'product';
+  type: 'customer' | 'product' | 'sales';
 }
 
 export function AnalyticsAssistant({ type }: AnalyticsAssistantProps) {
@@ -52,16 +52,21 @@ export function AnalyticsAssistant({ type }: AnalyticsAssistantProps) {
     scrollToBottom();
 
     try {
-      const response =
-        type === 'customer'
-          ? await aiService.askCustomerAnalyticsQuestion({
-              question,
-              chatHistory: historyForApi,
-            })
-          : await aiService.askProductAnalyticsQuestion({
-              question,
-              chatHistory: historyForApi,
-            });
+     const response =
+            type === 'customer'
+              ? await aiService.askCustomerAnalyticsQuestion({
+                  question,
+                  chatHistory: historyForApi,
+                })
+              : type === 'product'
+                ? await aiService.askProductAnalyticsQuestion({
+                    question,
+                    chatHistory: historyForApi,
+                  })
+                : await aiService.askSalesAnalyticsQuestion({
+                    question,
+                    chatHistory: historyForApi,
+                  });
 
       setMessages((prev) => [
         ...prev,
@@ -105,7 +110,7 @@ export function AnalyticsAssistant({ type }: AnalyticsAssistantProps) {
   const handleClear = () => setMessages([]);
 
   const analyticsName =
-    type === 'customer' ? 'customer' : 'product';
+    type === 'customer'? 'customer': type === 'product'? 'product': 'sales';
 
   return (
     <section className="card flex flex-col overflow-hidden">

@@ -6,7 +6,7 @@ import ProductsPage from '@/pages/Products/ProductPage';
 import ShipmentsPage from '@/pages/Shipments/ShipmentsPage';
 import PaymentsPage from '@/pages/Payments/PaymentsPage';
 import RatingsPage from '@/pages/Ratings/RatingsPage';
-import OrderItemsPage from '@/pages/OrderItems/OrderItemsPage';
+import SalesPage from '@/pages/Sales/SalesPage';
 
 /**
  * Each top-level route renders inside <Layout>, which owns the sidebar and
@@ -36,6 +36,11 @@ export const routes: RouteObject[] = [
     children: [{ index: true, element: <ProductsPage /> }],
   },
   {
+    path: '/sales',
+    element: <Layout title="Sales" subtitle="Sales performance and profitability insights." />,
+    children: [{ index: true, element: <SalesPage /> }],
+  },
+  {
     path: '/shipments',
     element: <Layout title="Shipments" subtitle="Shipment timing and logistics analytics." />,
     children: [{ index: true, element: <ShipmentsPage /> }],
@@ -49,11 +54,6 @@ export const routes: RouteObject[] = [
     path: '/ratings',
     element: <Layout title="Ratings" subtitle="Product and seller rating analytics." />,
     children: [{ index: true, element: <RatingsPage /> }],
-  },
-  {
-    path: '/order-items',
-    element: <Layout title="Order Items" subtitle="Product-level order item analytics." />,
-    children: [{ index: true, element: <OrderItemsPage /> }],
   },
   {
     path: '*',

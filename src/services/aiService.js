@@ -31,6 +31,16 @@ const aiService = {
         chat_history: chatHistory,
       })
       .then((res) => {console.log(res);return res.data}),
+
+  askSalesAnalyticsQuestion: ({ question, chatHistory }) =>
+    apiClient
+      .post('/api/ai/sales-chat', {
+        question,
+        chat_history: chatHistory,
+      })
+      .then((res) => {console.log(res);return res.data}),
+
+  
 };
 
 export default aiService;
