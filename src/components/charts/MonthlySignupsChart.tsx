@@ -38,8 +38,8 @@ export function MonthlySignupsChart() {
   console.log("this is monthly signup chart file", data);
 
   const points: MonthlySignupPoint[] = (data ?? []).map((item) => ({
-    month: item.customer_signup_month,
-    signups: item.count,
+    customer_signup_month: item.customer_signup_month,
+    count: item.count,
   }));
 
   return (
@@ -63,7 +63,7 @@ export function MonthlySignupsChart() {
           />
 
           <XAxis
-            dataKey="month"
+            dataKey="customer_signup_month"
             tick={{ fontSize: 11, fill: CHART_COLORS.axis }}
             axisLine={{ stroke: CHART_COLORS.grid }}
             tickLine={false}
@@ -91,7 +91,7 @@ export function MonthlySignupsChart() {
           />
 
           <Bar
-            dataKey="signups"
+            dataKey="count"
             fill={CHART_COLORS.primary}
             radius={[4, 4, 0, 0]}
             maxBarSize={36}

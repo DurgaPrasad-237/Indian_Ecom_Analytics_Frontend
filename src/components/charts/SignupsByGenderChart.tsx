@@ -39,41 +39,41 @@ export function SignupsByGenderChart() {
     isError,
     error,
     refetch,
-  } = useFetch<MonthlySignupsGenderResponse[]>(() =>
-    customerService.getMonthlySignupsGender()
-  );
+  } = useFetch<MonthlySignupsGenderResponse>(() =>
+  customerService.getMonthlySignupsGender()
+);
 
   console.log('monthly signup gender data', data);
 
-  const points: MonthlySignupsGenderPoint[] = Object.values(
-    (data ?? []).reduce(
-      (acc, item) => {
-        if (!acc[item.customer_signup_month]) {
-          acc[item.customer_signup_month] = {
-            month: item.customer_signup_month,
-            male: 0,
-            female: 0,
-            other: 0,
-          };
-        }
+const points: MonthlySignupsGenderPoint[] = Object.values(
+  (data ?? []).reduce(
+    (acc, item) => {
+      if (!acc[item.customer_signup_month]) {
+        acc[item.customer_signup_month] = {
+          customer_signup_month: item.customer_signup_month,
+          male: 0,
+          female: 0,
+          other: 0,
+        };
+      }
 
-        if (item.gender === 'Male') {
-          acc[item.customer_signup_month].male = item.count;
-        }
+      if (item.gender === 'Male') {
+        acc[item.customer_signup_month].male = item.count;
+      }
 
-        if (item.gender === 'Female') {
-          acc[item.customer_signup_month].female = item.count;
-        }
+      if (item.gender === 'Female') {
+        acc[item.customer_signup_month].female = item.count;
+      }
 
-        if (item.gender === 'Other') {
-          acc[item.customer_signup_month].other = item.count;
-        }
+      if (item.gender === 'Other') {
+        acc[item.customer_signup_month].other = item.count;
+      }
 
-        return acc;
-      },
-      {} as Record<string, MonthlySignupsGenderPoint>
-    )
-  );
+      return acc;
+    },
+    {} as Record<string, MonthlySignupsGenderPoint>
+  )
+);
 
   const hasOther = points.some(
     (point) => (point.other ?? 0) > 0

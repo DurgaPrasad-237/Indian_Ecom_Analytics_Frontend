@@ -21,16 +21,10 @@ export interface AverageOrderValueResponse {
 }
 
 export interface MonthlySignupPoint {
-  month: string; // e.g. "2024-01" or "Jan 2024"
-  signups: number;
+  customer_signup_month: string; // e.g. "2024-01" or "Jan 2024"
+  count: number;
 }
 
-export interface MonthlySignupsGenderPoint {
-  month: string;
-  male: number;
-  female: number;
-  other?: number;
-}
 
 export interface SignupTrendResponse {
   customer_signup_year: number;
@@ -78,3 +72,19 @@ export interface CustomerSegmentCVPoint {
 
 export type CustomerSegmentApiResponse = CustomerSegmentResponse[];
 export type MonthlySignupResponse = MonthlySignupPoint
+
+export interface MonthlySignupsGenderApiPoint {
+  customer_signup_month: string;
+  gender: string;
+  count: number;
+}
+
+export interface MonthlySignupsGenderPoint {
+  customer_signup_month: string;
+  male: number;
+  female: number;
+  other?: number;
+}
+
+export type MonthlySignupsGenderResponse =
+  MonthlySignupsGenderApiPoint[];
